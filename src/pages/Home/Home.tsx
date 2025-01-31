@@ -22,15 +22,7 @@ const songs = [
     artist: "Alma Morena",
     duration: "3:45",
     cover: logo,
-    audioUrl: "https://www2.cs.uic.edu/~i101/SoundFiles/StarWars3.wav"
-  },
-  {
-    id: 2,
-    title: "loca",
-    artist: "Alma Morena",
-    duration: "3:45",
-    cover: logo,
-    audioUrl: "https://www2.cs.uic.edu/~i101/SoundFiles/ImperialMarch.wav"
+    audioUrl: pista1
   }
 ];
 
