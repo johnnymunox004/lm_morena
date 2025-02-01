@@ -2,27 +2,59 @@ import { useState } from 'react'
 import '@fontsource/cormorant-garamond/600.css'
 import '@fontsource/montserrat/400.css'
 import '@fontsource/montserrat/500.css'
+import foto3 from '../../assets/foto3.jpg'
+import foto4 from '../../assets/foto4.jpg'
+import foto5 from '../../assets/foto5.jpg'
+import foto6 from '../../assets/foto6.jpg'
+import foto7 from '../../assets/foto7.jpg'
+import foto8 from '../../assets/foto8.jpg'
+import foto9 from '../../assets/foto9.jpg'
+import foto10 from '../../assets/foto10.jpg'
 
 const Gallery = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   const images = [
     {
-      src: '/images/gallery/img1.jpg',
-      alt: 'Concierto 1',
-      size: 'large', // rectangular
+      src: foto3,
+      alt: 'Alma Morena en Concierto',
+      size: 'large',
     },
     {
-      src: '/images/gallery/img2.jpg',
-      alt: 'Estudio',
+      src: foto9,
+      alt: 'Momentos Especiales',
+      size: 'tall',
+    },
+    {
+      src: foto4,
+      alt: 'Presentación en Vivo',
       size: 'square',
     },
     {
-      src: '/images/gallery/img3.jpg',
-      alt: 'Backstage',
-      size: 'tall', // rectangular vertical
+      src: foto10,
+      alt: 'Entre Bastidores',
+      size: 'large',
     },
-    // ... más imágenes
+    {
+      src: foto5,
+      alt: 'Backstage',
+      size: 'tall',
+    },
+    {
+      src: foto6,
+      alt: 'Ensayo',
+      size: 'square',
+    },
+    {
+      src: foto7,
+      alt: 'En el Escenario',
+      size: 'large',
+    },
+    {
+      src: foto8,
+      alt: 'Momentos Únicos',
+      size: 'tall',
+    },
   ];
 
   return (
@@ -83,7 +115,7 @@ const Gallery = () => {
               className="absolute top-4 right-4 text-white text-xl hover:text-orange-500 transition-colors"
               onClick={() => setSelectedImage(null)}
             >
-              ✕
+              <i className="fas fa-times"></i>
             </button>
           </div>
         </div>

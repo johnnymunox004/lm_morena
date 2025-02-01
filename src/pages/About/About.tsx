@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import foto2 from '../../assets/foto2.jpeg'
 
 const About = () => {
   const bandMembers = [
@@ -60,13 +61,34 @@ const About = () => {
 
   const [selectedMember, setSelectedMember] = useState<number | null>(null);
 
+  const awards = [
+    {
+      year: "2023",
+      title: "Mejor Artista Revelación",
+      organization: "Premios de la Música Country Latina",
+      description: "Reconocimiento al talento emergente en la fusión de géneros"
+    },
+    {
+      year: "2023",
+      title: "Álbum del Año",
+      organization: "Latin Music Awards",
+      description: "Por el álbum 'Raíces y Botas'"
+    },
+    {
+      year: "2022",
+      title: "Mejor Performance en Vivo",
+      organization: "Festival Internacional de Música",
+      description: "Actuación destacada en el escenario principal"
+    }
+  ]
+
   return (
     <div className="bg-black text-white min-h-screen font-montserrat">
       {/* Header de la página */}
       <div className="relative h-[40vh] overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black"></div>
         <img 
-          src="/images/band-photo.jpg" 
+          src={foto2}
           alt="Alma Morena Band" 
           className="w-full h-full object-cover"
         />
@@ -143,6 +165,51 @@ const About = () => {
               nuestro público a través de la música, creando momentos inolvidables y llevando 
               la alegría de la cumbia a todos los rincones.
             </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Nueva sección de Reconocimientos y Premios */}
+      <section className="py-20 bg-black">
+        <div className="container mx-auto px-4">
+          <h2 className="text-4xl font-cormorant font-semibold text-center mb-12
+                       bg-gradient-to-r from-orange-500 to-red-600 bg-clip-text text-transparent">
+            Reconocimientos y Premios
+          </h2>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {awards.map((award, index) => (
+              <div 
+                key={index}
+                className="bg-gradient-to-br from-neutral-900 to-black 
+                         border border-orange-500/20 rounded-xl p-8
+                         hover:border-orange-500/40 transition-all duration-300
+                         relative overflow-hidden group"
+              >
+                {/* Año destacado */}
+                <div className="absolute -top-6 -right-6 w-24 h-24 
+                             bg-gradient-to-br from-orange-500 to-red-600 
+                             rounded-full flex items-center justify-center
+                             transform rotate-12 group-hover:rotate-0 transition-transform duration-300">
+                  <span className="text-2xl font-bold text-white transform -rotate-12 group-hover:rotate-0 transition-transform duration-300">
+                    {award.year}
+                  </span>
+                </div>
+
+                {/* Contenido del premio */}
+                <div className="relative">
+                  <h3 className="text-xl font-bold mb-2 text-white">{award.title}</h3>
+                  <p className="text-orange-500 mb-4">{award.organization}</p>
+                  <p className="text-gray-400">{award.description}</p>
+                </div>
+
+                {/* Icono decorativo */}
+                <div className="absolute -bottom-8 -left-8 text-[120px] text-white/5
+                             transform rotate-12 group-hover:rotate-0 transition-transform duration-300">
+                  <i className="fas fa-award"></i>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>

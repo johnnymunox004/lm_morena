@@ -106,8 +106,6 @@ export const Disco = ({ songs }: DiscoProps) => {
           {/* Logo central sobre la imagen */}
           <div className={`absolute inset-0 flex items-center justify-center ${isPlaying ? 'animate-spin-slow' : ''}`}>
             <img 
-              src={viniloCentro}
-              alt="Logo central"
               className="w-4/5 h-4/5 object-contain drop-shadow-[0_0_8px_rgba(255,165,0,0.5)]"
             />
           </div>
