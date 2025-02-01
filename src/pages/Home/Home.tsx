@@ -105,124 +105,80 @@ const Home = () => {
                 </div>
               </div>
 
-              {/* Reproductor y App Download */}
-              <div className="flex flex-col items-center lg:flex-row lg:justify-start pb-8 lg:pb-0">
-                <div className="flex flex-col items-center w-full max-w-[320px] lg:flex-row lg:items-start gap-6 lg:gap-8">
-                  {/* Celular */}
-                  <div className="relative w-full max-w-[250px] lg:w-auto">
-                    {isMobile ? (
-                      <div className="w-full bg-black rounded-3xl overflow-hidden shadow-2xl">
-                        <Disco songs={songs} />
-                      </div>
-                    ) : (
-                      <div className="transform scale-75 lg:scale-[0.85] hover:scale-[0.87] transition-transform duration-300">
-                        <DeviceFrameset device="iPhone X" color="gold">
-                          <div className="w-full h-full bg-black">
-                            <Disco songs={songs} />
-                          </div>
-                        </DeviceFrameset>
-                      </div>
-                    )}
-                  </div>
+              {/* Columna Derecha: Reproductor y App */}
+              <div className="flex flex-col lg:flex-row items-center justify-center lg:justify-between w-full gap-8">
+                {/* Lado izquierdo: Reproductor */}
+                <div className="w-full max-w-[250px] flex justify-center">
+                  {isMobile ? (
+                    <div className="w-full bg-black rounded-3xl overflow-hidden shadow-2xl">
+                      <Disco songs={songs} />
+                    </div>
+                  ) : (
+                    <div className="transform scale-75 hover:scale-[0.77] transition-transform duration-300">
+                      <DeviceFrameset device="iPhone X" color="gold">
+                        <div className="w-full h-full bg-black">
+                          <Disco songs={songs} />
+                        </div>
+                      </DeviceFrameset>
+                    </div>
+                  )}
+                </div>
 
-                  {/* App Download Cards - Versión móvil */}
-                  <div className="flex lg:hidden flex-col items-center w-full space-y-3">
-                    {/* Versión móvil de las cards */}
-                    <div className="grid grid-cols-2 gap-3 w-full">
-                      <div className="flex items-center gap-2 p-3 bg-black/30 rounded-xl backdrop-blur-sm
-                                   border border-orange-500/20 hover:border-orange-500/40 transition-all duration-300">
-                        <div className="w-8 h-8 rounded-full bg-orange-500/10 flex items-center justify-center 
+                {/* Lado derecho: Cards y Botones */}
+                <div className="flex flex-col gap-4 w-full max-w-[300px] px-4 lg:px-0">
+                  {/* Cards en row */}
+                  <div className="flex gap-4 justify-center lg:justify-start">
+                    {/* Card 1: Música Offline */}
+                    <div className="flex items-center gap-2 p-3 bg-black/30 rounded-xl backdrop-blur-sm
+                                   border border-orange-500/20 hover:border-orange-500/40 
+                                   transition-all duration-300 flex-1">
+                      <div className="w-8 h-8 rounded-full bg-orange-500/10 flex items-center justify-center 
                                      text-orange-500">
-                          <i className="fas fa-music text-sm"></i>
-                        </div>
-                        <div>
-                          <h3 className="text-sm font-semibold">Offline</h3>
-                          <p className="text-xs text-gray-400">Escucha siempre</p>
-                        </div>
+                        <i className="fas fa-music text-sm"></i>
                       </div>
-                      <div className="flex items-center gap-2 p-3 bg-black/30 rounded-xl backdrop-blur-sm
-                                   border border-orange-500/20 hover:border-orange-500/40 transition-all duration-300">
-                        <div className="w-8 h-8 rounded-full bg-orange-500/10 flex items-center justify-center 
-                                     text-orange-500">
-                          <i className="fas fa-bell text-sm"></i>
-                        </div>
-                        <div>
-                          <h3 className="text-sm font-semibold">Alertas</h3>
-                          <p className="text-xs text-gray-400">No te pierdas nada</p>
-                        </div>
+                      <div>
+                        <h3 className="text-sm font-semibold">Offline</h3>
+                        <p className="text-xs text-gray-400">Escucha siempre</p>
                       </div>
                     </div>
 
-                    {/* Botones de store versión móvil */}
-                    <div className="flex gap-3 w-full">
-                      <a href="#" className="flex-1 flex items-center justify-center gap-2 p-3 
-                                          bg-gradient-to-br from-neutral-900 to-black
-                                          border border-orange-500/20 rounded-xl hover:border-orange-500/40 
-                                          transition-all duration-300">
-                        <i className="fab fa-apple text-xl"></i>
-                        <span className="text-sm font-semibold">App Store</span>
-                      </a>
-                      <a href="#" className="flex-1 flex items-center justify-center gap-2 p-3 
-                                          bg-gradient-to-br from-neutral-900 to-black
-                                          border border-orange-500/20 rounded-xl hover:border-orange-500/40 
-                                          transition-all duration-300">
-                        <i className="fab fa-google-play text-xl"></i>
-                        <span className="text-sm font-semibold">Play Store</span>
-                      </a>
+                    {/* Card 2: Notificaciones */}
+                    <div className="flex items-center gap-2 p-3 bg-black/30 rounded-xl backdrop-blur-sm
+                                   border border-orange-500/20 hover:border-orange-500/40 
+                                   transition-all duration-300 flex-1">
+                      <div className="w-8 h-8 rounded-full bg-orange-500/10 flex items-center justify-center 
+                                     text-orange-500">
+                        <i className="fas fa-bell text-sm"></i>
+                      </div>
+                      <div>
+                        <h3 className="text-sm font-semibold">Alertas</h3>
+                        <p className="text-xs text-gray-400">No te pierdas nada</p>
+                      </div>
                     </div>
                   </div>
 
-                  {/* App Download Cards - Versión Desktop */}
-                  <div className="hidden lg:flex flex-col justify-center space-y-3 w-[220px]">
-                    {/* Beneficios */}
-                    <div className="space-y-3">
-                      <div className="flex items-center gap-3 p-4 bg-black/30 rounded-xl backdrop-blur-sm
-                                   border border-orange-500/20 hover:border-orange-500/40 
-                                   transition-all duration-300 group">
-                        <div className="w-10 h-10 rounded-full bg-orange-500/10 flex items-center justify-center 
-                                     text-orange-500 group-hover:scale-110 transition-transform duration-300">
-                          <i className="fas fa-music text-lg"></i>
-                        </div>
-                        <div>
-                          <h3 className="text-sm font-semibold mb-1">Música Offline</h3>
-                          <p className="text-xs text-gray-400">Escucha donde quieras</p>
-                        </div>
+                  {/* Botones de store en row */}
+                  <div className="flex gap-4 justify-center lg:justify-start">
+                    <a href="#" className="flex items-center gap-2 p-3 
+                                        bg-gradient-to-br from-neutral-900 to-black
+                                        border border-orange-500/20 rounded-xl hover:border-orange-500/40 
+                                        transition-all duration-300 flex-1">
+                      <i className="fab fa-apple text-xl"></i>
+                      <div className="text-left">
+                        <div className="text-xs text-gray-400">Descarga en</div>
+                        <div className="text-sm font-semibold">App Store</div>
                       </div>
-                      <div className="flex items-center gap-3 p-4 bg-black/30 rounded-xl backdrop-blur-sm
-                                   border border-orange-500/20 hover:border-orange-500/40 
-                                   transition-all duration-300 group">
-                        <div className="w-10 h-10 rounded-full bg-orange-500/10 flex items-center justify-center 
-                                     text-orange-500 group-hover:scale-110 transition-transform duration-300">
-                          <i className="fas fa-bell text-lg"></i>
-                        </div>
-                        <div>
-                          <h3 className="text-sm font-semibold mb-1">Notificaciones</h3>
-                          <p className="text-xs text-gray-400">Mantente al día</p>
-                        </div>
+                    </a>
+                    <a href="#" className="flex items-center gap-2 p-3 
+                                        bg-gradient-to-br from-neutral-900 to-black
+                                        border border-orange-500/20 rounded-xl hover:border-orange-500/40 
+                                        transition-all duration-300 flex-1">
+                      <i className="fab fa-google-play text-xl"></i>
+                      <div className="text-left">
+                        <div className="text-xs text-gray-400">Disponible en</div>
+                        <div className="text-sm font-semibold">Play Store</div>
                       </div>
-                    </div>
-
-                    {/* Store Buttons */}
-                    <div className="space-y-3">
-                      <a href="#" className="flex items-center gap-3 px-4 py-3 bg-black/30 rounded-xl backdrop-blur-sm
-                                          border border-orange-500/20 hover:border-orange-500/40 
-                                          transition-all duration-300 group w-full">
-                        <i className="fab fa-apple text-2xl group-hover:text-orange-500 transition-colors"></i>
-                        <div className="text-left">
-                          <div className="text-xs text-gray-400">Descarga en</div>
-                          <div className="text-sm font-semibold">App Store</div>
-                        </div>
-                      </a>
-                      <a href="#" className="flex items-center gap-3 px-4 py-3 bg-black/30 rounded-xl backdrop-blur-sm
-                                          border border-orange-500/20 hover:border-orange-500/40 
-                                          transition-all duration-300 group w-full">
-                        <i className="fab fa-google-play text-2xl group-hover:text-orange-500 transition-colors"></i>
-                        <div className="text-left">
-                          <div className="text-xs text-gray-400">Disponible en</div>
-                          <div className="text-sm font-semibold">Google Play</div>
-                        </div>
-                      </a>
-                    </div>
+                    </a>
                   </div>
                 </div>
               </div>
