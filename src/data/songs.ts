@@ -6,16 +6,9 @@ import foto2 from '../assets/foto2.jpeg'
 import foto3 from '../assets/foto3.jpg'
 
 export const songs = [
+
   {
     id: 1,
-    title: "te amo",
-    artist: "Alma Morena",
-    duration: "3:45",
-    cover: foto1,
-    audioUrl: pista1
-  },
-  {
-    id: 2,
     title: "sera prudente",
     artist: "Alma Morena",
     duration: "4:20",
@@ -23,7 +16,7 @@ export const songs = [
     audioUrl: pista2
   },
   {
-    id: 3,
+    id: 2,
     title: "no debes pensar en mi",
     artist: "Alma Morena",
     duration: "3:55",

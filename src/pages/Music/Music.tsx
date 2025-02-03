@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import logo from '../../assets/foto1.png'
-import pista1 from '../../assets/pista_1.mp3'
+import pista2 from '../../assets/pista2.mp3'
 
 const Music = () => {
   const [activeTab, setActiveTab] = useState('singles')
@@ -15,7 +15,7 @@ const Music = () => {
       artist: "Alma Morena",
       duration: "3:45",
       cover: logo,
-      audioUrl: pista1,
+      audioUrl: pista2,
       releaseDate: "2024",
       description: "Una fusión única de country y cumbia"
     }
