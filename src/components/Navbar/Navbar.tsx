@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 // Navbar Component
-export const Navbar = () => {
+const Navbar = () => {
     const [isOpen, setIsOpen] = React.useState(false);
   
     return (
@@ -89,5 +89,7 @@ export const Navbar = () => {
       </nav>
     );
   };
+
+export default Navbar
 
 

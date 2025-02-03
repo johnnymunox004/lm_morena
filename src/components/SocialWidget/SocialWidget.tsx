@@ -7,7 +7,7 @@ interface SocialLink {
   label: string
 }
 
-export const SocialWidget = () => {
+const SocialWidget = () => {
   const [isOpen, setIsOpen] = useState(false)
 
   const socialLinks: SocialLink[] = [
@@ -134,4 +134,6 @@ export const SocialWidget = () => {
       </div>
     </>
   )
-} 
+}
+
+export default SocialWidget 

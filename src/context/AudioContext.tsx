@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useRef, ReactNode, useEffect } from 'react'
+import { createContext, useContext, useState, useRef, ReactNode, useEffect, useCallback } from 'react'
 import { songs as initialSongsList } from '../data/songs'
 
 interface Song {
@@ -32,6 +32,75 @@ export const AudioProvider = ({ children }: { children: ReactNode }) => {
   const [progress, setProgress] = useState(0)
   const [volume, setVolume] = useState(1)
   const audioRef = useRef<HTMLAudioElement | null>(null)
+
+  const handleNext = useCallback(() => {
+    const currentIndex = initialSongsList.findIndex(song => song.id === currentSong.id)
+    const nextSong = initialSongsList[(currentIndex + 1) % initialSongsList.length]
+    setCurrentSong(nextSong)
+  }, [currentSong])
+
+  const handlePrevious = useCallback(() => {
+    const currentIndex = initialSongsList.findIndex(song => song.id === currentSong.id)
+    const previousSong = initialSongsList[(currentIndex - 1 + initialSongsList.length) % initialSongsList.length]
+    setCurrentSong(previousSong)
+  }, [currentSong])
+
+  const handleTimeUpdate = useCallback(() => {
+    if (audioRef.current) {
+      setProgress((audioRef.current.currentTime / audioRef.current.duration) * 100)
+    }
+  }, [])
+
+  const handleEnded = useCallback(() => {
+    setIsPlaying(false)
+    handleNext()
+  }, [handleNext])
+
+  const handlePlayPause = useCallback(() => {
+    setIsPlaying(!isPlaying)
+  }, [isPlaying])
+
+  const handleVolumeChange = useCallback((newVolume: number) => {
+    setVolume(newVolume)
+    if (audioRef.current) {
+      audioRef.current.volume = newVolume
+    }
+  }, [])
+
+  const handleProgressChange = useCallback((newProgress: number) => {
+    if (audioRef.current) {
+      const time = (newProgress * audioRef.current.duration) / 100
+      audioRef.current.currentTime = time
+      setProgress(newProgress)
+    }
+  }, [])
+
+  // Efecto para manejar la reproducción
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.src = currentSong.audioUrl
+      if (isPlaying) {
+        audioRef.current.play().catch(error => {
+          console.error('Error playing audio:', error)
+          setIsPlaying(false)
+        })
+      } else {
+        audioRef.current.pause()
+      }
+    }
+  }, [currentSong, isPlaying])
+
+  // Efecto para los event listeners
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.addEventListener('timeupdate', handleTimeUpdate)
+      audioRef.current.addEventListener('ended', handleEnded)
+      return () => {
+        audioRef.current?.removeEventListener('timeupdate', handleTimeUpdate)
+        audioRef.current?.removeEventListener('ended', handleEnded)
+      }
+    }
+  }, [handleTimeUpdate, handleEnded])
 
   // Mantener el estado de reproducción entre navegaciones
   useEffect(() => {
@@ -84,76 +153,6 @@ export const AudioProvider = ({ children }: { children: ReactNode }) => {
     }
   }, [])
 
-  // Manejar cambios en la canción actual
-  useEffect(() => {
-    if (audioRef.current) {
-      audioRef.current.src = currentSong.audioUrl
-      if (isPlaying) {
-        audioRef.current.play().catch(error => {
-          console.error('Error playing audio:', error)
-          setIsPlaying(false)
-        })
-      }
-    }
-  }, [currentSong])
-
-  const handlePlayPause = () => {
-    setIsPlaying(!isPlaying)
-  }
-
-  const handleVolumeChange = (newVolume: number) => {
-    setVolume(newVolume)
-    if (audioRef.current) {
-      audioRef.current.volume = newVolume
-    }
-  }
-
-  const handleProgressChange = (newProgress: number) => {
-    if (audioRef.current) {
-      const time = (newProgress * audioRef.current.duration) / 100
-      audioRef.current.currentTime = time
-      setProgress(newProgress)
-    }
-  }
-
-  const handleNext = () => {
-    const currentIndex = initialSongsList.findIndex(song => song.id === currentSong.id)
-    const nextSong = initialSongsList[(currentIndex + 1) % initialSongsList.length]
-    setCurrentSong(nextSong)
-  }
-
-  const handlePrevious = () => {
-    const currentIndex = initialSongsList.findIndex(song => song.id === currentSong.id)
-    const previousSong = initialSongsList[(currentIndex - 1 + initialSongsList.length) % initialSongsList.length]
-    setCurrentSong(previousSong)
-  }
-
-  // Actualizar el progreso
-  useEffect(() => {
-    const handleTimeUpdate = () => {
-      if (audioRef.current) {
-        setProgress((audioRef.current.currentTime / audioRef.current.duration) * 100)
-      }
-    }
-
-    const handleEnded = () => {
-      setIsPlaying(false)
-      handleNext()
-    }
-
-    if (audioRef.current) {
-      audioRef.current.addEventListener('timeupdate', handleTimeUpdate)
-      audioRef.current.addEventListener('ended', handleEnded)
-    }
-
-    return () => {
-      if (audioRef.current) {
-        audioRef.current.removeEventListener('timeupdate', handleTimeUpdate)
-        audioRef.current.removeEventListener('ended', handleEnded)
-      }
-    }
-  }, [])
-
   return (
     <AudioContext.Provider
       value={{
@@ -176,7 +175,7 @@ export const AudioProvider = ({ children }: { children: ReactNode }) => {
         ref={audioRef}
         src={currentSong.audioUrl}
         onTimeUpdate={handleTimeUpdate}
-        onEnded={handleNext}
+        onEnded={handleEnded}
       />
     </AudioContext.Provider>
   )

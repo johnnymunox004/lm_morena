@@ -131,7 +131,7 @@ export const Disco = ({ songs }: DiscoProps) => {
               type="range"
               min="0"
               max="100"
-              value={progress}
+              value={isNaN(progress) ? 0 : progress}
               onChange={(e) => handleProgressChange(Number(e.target.value))}
               className="absolute w-full h-full opacity-0 cursor-pointer"
             />

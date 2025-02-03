@@ -21,6 +21,8 @@ import "@fontsource/playfair-display"; // Instalar con: npm install @fontsource/
 import { songs } from '../../data/songs'  // Importar songs desde el archivo correcto
 import { useRef } from 'react'
 import { useAudio } from '../../context/AudioContext'
+import { FaPlay, FaPause, FaForward, FaBackward } from 'react-icons/fa' // Instala react-icons si no lo tienes
+
 
 // Datos de ejemplo para el componente Disco
 const songsData = [
@@ -84,7 +86,6 @@ const Home = () => {
     
     // Pequeño delay para asegurar que la canción esté cargada
     setTimeout(() => {
-      // Si no está reproduciendo, iniciar reproducción
       if (!isPlaying) {
         handlePlayPause()
       }
@@ -118,10 +119,7 @@ const Home = () => {
       {/* Hero Section */}
       <section className="min-h-screen relative lg:h-screen lg:overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black"></div>
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: "url('/images/hero-bg.jpg')" }}
-        ></div>
+  
 
         <div className="relative z-20 container mx-auto px-4 py-12 lg:h-full">
           <div className="h-full flex items-center">
@@ -163,10 +161,8 @@ const Home = () => {
                       className="px-6 py-2 bg-gradient-to-r from-orange-500 to-red-600 
                                text-white rounded-full font-medium 
                                hover:from-orange-600 hover:to-red-700 
-                               transition-all duration-300 shadow-lg shadow-orange-500/20
-                               flex items-center gap-2"
+                               transition-all duration-300 shadow-lg shadow-orange-500/20"
                     >
-                      <i className="fas fa-play text-sm"></i>
                       Escuchar Ahora
                     </button>
                     <a
@@ -357,43 +353,43 @@ const events = [
     title: "Noche de Country Latino",
     date: "15 de Mayo, 2024",
     location: "Teatro Real, Madrid",
-    image: "/images/event1.jpg",
+    image: logo
   },
   {
     title: "Festival Raíces",
     date: "22 de Mayo, 2024",
     location: "Plaza Mayor, Barcelona",
-    image: "/images/event2.jpg",
+    image: logo2
   },
   {
     title: "Concierto Bajo las Estrellas",
     date: "30 de Mayo, 2024",
     location: "Jardines del Retiro, Madrid",
-    image: "/images/event3.jpg",
-  },
-];
+    image: logo3
+  }
+]
 
 const releases = [
   {
     title: "valio la pena",
     year: "2024",
-    cover: foto9,
+    cover: foto9
   },
   {
     title: "no quiero hacerte daño",
     year: "2023",
-    cover: foto10,
+    cover: foto10
   },
   {
     title: "Alma Latina",
     year: "2023",
-    cover: "/images/album3.jpg",
+    cover: logo2
   },
   {
     title: "Entre Dos Mundos",
     year: "2022",
-    cover: "/images/album4.jpg",
-  },
-];
+    cover: logo3
+  }
+]
 
 export default Home;
