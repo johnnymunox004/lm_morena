@@ -19,6 +19,8 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "@fontsource/playfair-display"; // Instalar con: npm install @fontsource/playfair-display
 import { songs } from '../../data/songs'  // Importar songs desde el archivo correcto
+import { useRef } from 'react'
+import { useAudio } from '../../context/AudioContext'
 
 // Datos de ejemplo para el componente Disco
 const songsData = [
@@ -73,6 +75,22 @@ const songsData = [
 ];
 
 const Home = () => {
+  const { handlePlayPause, isPlaying } = useAudio()
+  const reproductorRef = useRef<HTMLDivElement>(null)
+
+  const handleEscucharClick = () => {
+    // Si no está reproduciendo, iniciar reproducción
+    if (!isPlaying) {
+      handlePlayPause()
+    }
+    
+    // Scroll suave hasta el reproductor
+    reproductorRef.current?.scrollIntoView({ 
+      behavior: 'smooth',
+      block: 'center'
+    })
+  }
+
   const sliderSettings = {
     dots: false,
     infinite: true,
@@ -134,15 +152,20 @@ const Home = () => {
                     Donde el country se encuentra con el alma latina
                   </p>
                   <div className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
-                    <a
-                      href="/musica"
-                      className="px-6 py-2 bg-gradient-to-r from-orange-500 to-red-600 text-white rounded-full font-medium hover:from-orange-600 hover:to-red-700 transition-all duration-300 shadow-lg shadow-orange-500/20"
+                    <button
+                      onClick={handleEscucharClick}
+                      className="px-6 py-2 bg-gradient-to-r from-orange-500 to-red-600 
+                               text-white rounded-full font-medium 
+                               hover:from-orange-600 hover:to-red-700 
+                               transition-all duration-300 shadow-lg shadow-orange-500/20"
                     >
                       Escuchar Ahora
-                    </a>
+                    </button>
                     <a
                       href="/nosotros"
-                      className="px-6 py-2 border border-orange-500 text-orange-500 rounded-full font-medium hover:bg-orange-500 hover:text-white transition-all duration-300"
+                      className="px-6 py-2 border border-orange-500 text-orange-500 
+                               rounded-full font-medium hover:bg-orange-500 
+                               hover:text-white transition-all duration-300"
                     >
                       Conócenos
                     </a>
@@ -153,7 +176,7 @@ const Home = () => {
               {/* Columna Derecha: Reproductor y App */}
               <div className="flex flex-col lg:flex-row items-center justify-center lg:justify-between w-full gap-8">
                 {/* Lado izquierdo: Reproductor */}
-                <div className="w-full max-w-[250px] lg:max-w-[320px] flex justify-center lg:ml-8 lg:flex-1">
+                <div ref={reproductorRef} className="w-full max-w-[250px] lg:max-w-[320px] flex justify-center lg:ml-8 lg:flex-1">
                   <div className="transform scale-[0.85] hover:scale-[0.87] transition-transform duration-300 flex justify-center">
                     <DeviceFrameset device="iPhone X" color="gold">
                       <div className="w-full h-full bg-black">
