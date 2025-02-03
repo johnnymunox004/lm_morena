@@ -8,15 +8,11 @@ export default defineConfig({
     outDir: 'dist',
     sourcemap: false,
     rollupOptions: {
-      external: ['@rollup/rollup-linux-x64-gnu'],
       output: {
         manualChunks: undefined,
       },
     },
   },
   base: '/',
-  optimizeDeps: {
-    exclude: ['@rollup/rollup-linux-x64-gnu']
-  },
-  assetsInclude: ['**/*.mp3', '**/*.wav', '**/*.jpg', '**/*.png', '**/*.jpeg'],
+  assetsInclude: ['**/*.mp3', '**/*.wav', '**/*.jpg', '**/*.png', '**/*.jpeg']
 })
