@@ -75,14 +75,20 @@ const songsData = [
 ];
 
 const Home = () => {
-  const { handlePlayPause, isPlaying } = useAudio()
+  const { handlePlayPause, isPlaying, setCurrentSong } = useAudio()
   const reproductorRef = useRef<HTMLDivElement>(null)
 
   const handleEscucharClick = () => {
-    // Si no está reproduciendo, iniciar reproducción
-    if (!isPlaying) {
-      handlePlayPause()
-    }
+    // Seleccionar la primera canción
+    setCurrentSong(songs[0])
+    
+    // Pequeño delay para asegurar que la canción esté cargada
+    setTimeout(() => {
+      // Si no está reproduciendo, iniciar reproducción
+      if (!isPlaying) {
+        handlePlayPause()
+      }
+    }, 100)
     
     // Scroll suave hasta el reproductor
     reproductorRef.current?.scrollIntoView({ 
@@ -157,12 +163,14 @@ const Home = () => {
                       className="px-6 py-2 bg-gradient-to-r from-orange-500 to-red-600 
                                text-white rounded-full font-medium 
                                hover:from-orange-600 hover:to-red-700 
-                               transition-all duration-300 shadow-lg shadow-orange-500/20"
+                               transition-all duration-300 shadow-lg shadow-orange-500/20
+                               flex items-center gap-2"
                     >
+                      <i className="fas fa-play text-sm"></i>
                       Escuchar Ahora
                     </button>
                     <a
-                      href="/nosotros"
+                      href="/contact"
                       className="px-6 py-2 border border-orange-500 text-orange-500 
                                rounded-full font-medium hover:bg-orange-500 
                                hover:text-white transition-all duration-300"
