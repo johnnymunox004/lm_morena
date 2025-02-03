@@ -33,6 +33,45 @@ export const AudioProvider = ({ children }: { children: ReactNode }) => {
   const [volume, setVolume] = useState(1)
   const audioRef = useRef<HTMLAudioElement | null>(null)
 
+  // Mantener el estado de reproducción entre navegaciones
+  useEffect(() => {
+    if (audioRef.current) {
+      if (isPlaying) {
+        audioRef.current.play().catch(error => {
+          console.error('Error playing audio:', error)
+          setIsPlaying(false)
+        })
+      } else {
+        audioRef.current.pause()
+      }
+    }
+  }, [currentSong, isPlaying])
+
+  // Persistir el estado en localStorage
+  useEffect(() => {
+    const savedState = localStorage.getItem('audioState')
+    if (savedState) {
+      const { songId, playing, currentProgress, currentVolume } = JSON.parse(savedState)
+      const savedSong = initialSongsList.find(song => song.id === songId)
+      if (savedSong) {
+        setCurrentSong(savedSong)
+        setIsPlaying(playing)
+        setProgress(currentProgress)
+        setVolume(currentVolume)
+      }
+    }
+  }, [])
+
+  // Guardar estado en localStorage cuando cambie
+  useEffect(() => {
+    localStorage.setItem('audioState', JSON.stringify({
+      songId: currentSong.id,
+      playing: isPlaying,
+      currentProgress: progress,
+      currentVolume: volume
+    }))
+  }, [currentSong, isPlaying, progress, volume])
+
   // Inicializar el elemento de audio
   useEffect(() => {
     audioRef.current = new Audio()
@@ -57,20 +96,6 @@ export const AudioProvider = ({ children }: { children: ReactNode }) => {
       }
     }
   }, [currentSong])
-
-  // Manejar cambios en el estado de reproducción
-  useEffect(() => {
-    if (audioRef.current) {
-      if (isPlaying) {
-        audioRef.current.play().catch(error => {
-          console.error('Error playing audio:', error)
-          setIsPlaying(false)
-        })
-      } else {
-        audioRef.current.pause()
-      }
-    }
-  }, [isPlaying])
 
   const handlePlayPause = () => {
     setIsPlaying(!isPlaying)
@@ -146,6 +171,13 @@ export const AudioProvider = ({ children }: { children: ReactNode }) => {
       }}
     >
       {children}
+      {/* Audio element siempre presente */}
+      <audio
+        ref={audioRef}
+        src={currentSong.audioUrl}
+        onTimeUpdate={handleTimeUpdate}
+        onEnded={handleNext}
+      />
     </AudioContext.Provider>
   )
 }
