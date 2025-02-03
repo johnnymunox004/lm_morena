@@ -6,7 +6,6 @@ export default defineConfig({
   plugins: [react()],
   build: {
     outDir: 'dist',
-    assetsDir: 'assets',
     sourcemap: false,
     rollupOptions: {
       output: {
@@ -14,6 +13,9 @@ export default defineConfig({
       },
     },
   },
-  base: './',
-  assetsInclude: ['**/*.mp3', '**/*.wav'],
+  base: '/',
+  optimizeDeps: {
+    exclude: ['@rollup/rollup-linux-x64-gnu']
+  },
+  assetsInclude: ['**/*.mp3', '**/*.wav', '**/*.jpg', '**/*.png', '**/*.jpeg'],
 })
