@@ -106,21 +106,22 @@ const Home = () => {
               <div className="flex flex-col items-center lg:items-start">
                 {/* Carrusel de imágenes */}
                 <div className="relative w-full overflow-hidden">
-                  <div className="relative group mx-auto lg:mx-0 max-w-[80%] lg:max-w-[100%]">
+                  <div className="relative group mx-auto lg:mx-0 max-w-[90%] lg:max-w-[100%]">
                     <Slider {...sliderSettings}>
                       {images.map((img, index) => (
-                        <div key={index} className="outline-none">
+                        <div key={index} className="outline-none px-4">
                           <img
                             src={img}
                             alt={`Slide ${index + 1}`}
-                            className="w-full h-auto object-contain 
-                               drop-shadow-[0_0_30px_rgba(255,165,0,0.4)]
-                               group-hover:drop-shadow-[0_0_40px_rgba(255,165,0,0.6)]
-                               group-hover:scale-105 transition-all duration-700"
+                            className="w-full h-[300px] md:h-[400px] lg:h-[500px] object-contain 
+                             drop-shadow-[0_0_30px_rgba(255,165,0,0.4)]
+                             group-hover:drop-shadow-[0_0_40px_rgba(255,165,0,0.6)]
+                             group-hover:scale-105 transition-all duration-700"
                           />
                           <div
                             className="absolute inset-0 bg-gradient-to-tr from-orange-500/0 via-orange-500/10 to-orange-500/0 
-                                  opacity-0 group-hover:opacity-100 transition-opacity duration-700"
+                                      opacity-0 group-hover:opacity-100 transition-opacity duration-700
+                                      rounded-xl"
                           ></div>
                         </div>
                       ))}
