@@ -26,16 +26,9 @@ import { FaPlay, FaPause, FaForward, FaBackward } from 'react-icons/fa' // Insta
 
 // Datos de ejemplo para el componente Disco
 const songsData = [
+
   {
     id: 1,
-    title: "te amo",
-    artist: "Alma Morena",
-    duration: "3:45",
-    cover: logo,
-    audioUrl: pista1,
-  },
-  {
-    id: 2,
     title: "sera prudente ",
     artist: "Alma Morena",
     duration: "3:45",
@@ -43,37 +36,30 @@ const songsData = [
     audioUrl: pista2,
   },
   {
-    id: 3,
+    id: 2,
     title: "no debes pensar en mi ",
     artist: "Alma Morena",
     duration: "3:45",
     cover: logo,
     audioUrl: pista3,
   },
-  // {
-  //   id: 4,
-  //   title: "no quiero hacerte daño",
-  //   artist: "Alma Morena",
-  //   duration: "3:45",
-  //   cover: logo,
-  //   audioUrl: pista1,
-  // },
-  // {
-  //   id: 5,
-  //   title: "no quiero hacerte daño",
-  //   artist: "Alma Morena",
-  //   duration: "3:45",
-  //   cover: logo,
-  //   audioUrl: pista1,
-  // },
-  // {
-  //   id: 6,
-  //   title: "no quiero hacerte daño",
-  //   artist: "Alma Morena",
-  //   duration: "3:45",
-  //   cover: logo,
-  //   audioUrl: pista1,
-  // },
+  {
+    id: 3,
+    title: "no quiero hacerte daño",
+    artist: "Alma Morena",
+    duration: "3:45",
+    cover: logo,
+    audioUrl: pista1,
+  },
+  {
+    id: 4,
+    title: "no quiero hacerte daño",
+    artist: "Alma Morena",
+    duration: "3:45",
+    cover: logo,
+    audioUrl: pista1,
+  }
+
 ];
 
 const Home = () => {
