@@ -5,19 +5,23 @@ import logo from "../../assets/foto1.png";
 import logo2 from "../../assets/foto2.jpeg";
 import logo3 from "../../assets/foto3.jpg";
 import pista1 from "../../assets/pista_1.mp3";
+import pista2 from "../../assets/pista2.mp3";
+import pista3 from "../../assets/pista_3.mp3";
+
 import foto9 from "../../assets/foto9.jpg";
 import foto10 from "../../assets/foto10.jpg";
 
-import { isMobile } from "react-device-detect";
+// import { isMobile } from "react-device-detect";
 import { DeviceFrameset } from "react-device-frameset";
 import "react-device-frameset/styles/marvel-devices.min.css";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "@fontsource/playfair-display"; // Instalar con: npm install @fontsource/playfair-display
+import { songs } from '../../data/songs'  // Importar songs desde el archivo correcto
 
 // Datos de ejemplo para el componente Disco
-const songs = [
+const songsData = [
   {
     id: 1,
     title: "te amo",
@@ -26,6 +30,46 @@ const songs = [
     cover: logo,
     audioUrl: pista1,
   },
+  {
+    id: 2,
+    title: "sera prudente ",
+    artist: "Alma Morena",
+    duration: "3:45",
+    cover: logo,
+    audioUrl: pista2,
+  },
+  {
+    id: 3,
+    title: "no debes pensar en mi ",
+    artist: "Alma Morena",
+    duration: "3:45",
+    cover: logo,
+    audioUrl: pista3,
+  },
+  // {
+  //   id: 4,
+  //   title: "no quiero hacerte daño",
+  //   artist: "Alma Morena",
+  //   duration: "3:45",
+  //   cover: logo,
+  //   audioUrl: pista1,
+  // },
+  // {
+  //   id: 5,
+  //   title: "no quiero hacerte daño",
+  //   artist: "Alma Morena",
+  //   duration: "3:45",
+  //   cover: logo,
+  //   audioUrl: pista1,
+  // },
+  // {
+  //   id: 6,
+  //   title: "no quiero hacerte daño",
+  //   artist: "Alma Morena",
+  //   duration: "3:45",
+  //   cover: logo,
+  //   audioUrl: pista1,
+  // },
 ];
 
 const Home = () => {
@@ -43,7 +87,7 @@ const Home = () => {
     pauseOnHover: false,
   };
 
-  const images = [logo, logo2, logo3];
+  const images = [logo, logo2, foto10 ];
 
   return (
     <div className="flex flex-col bg-black text-white font-playfair">
@@ -108,20 +152,14 @@ const Home = () => {
               {/* Columna Derecha: Reproductor y App */}
               <div className="flex flex-col lg:flex-row items-center justify-center lg:justify-between w-full gap-8">
                 {/* Lado izquierdo: Reproductor */}
-                <div className="w-full max-w-[250px] flex justify-center">
-                  {isMobile ? (
-                    <div className="w-full bg-black rounded-3xl overflow-hidden shadow-2xl">
-                      <Disco songs={songs} />
-                    </div>
-                  ) : (
-                    <div className="transform scale-75 hover:scale-[0.77] transition-transform duration-300">
-                      <DeviceFrameset device="iPhone X" color="gold">
-                        <div className="w-full h-full bg-black">
-                          <Disco songs={songs} />
-                        </div>
-                      </DeviceFrameset>
-                    </div>
-                  )}
+                <div className="w-full max-w-[250px] lg:max-w-[320px] flex justify-center lg:ml-8 lg:flex-1">
+                  <div className="transform scale-[0.85] hover:scale-[0.87] transition-transform duration-300 flex justify-center">
+                    <DeviceFrameset device="iPhone X" color="gold">
+                      <div className="w-full h-full bg-black">
+                        <Disco songs={songs} />
+                      </div>
+                    </DeviceFrameset>
+                  </div>
                 </div>
 
                 {/* Lado derecho: Cards y Botones */}

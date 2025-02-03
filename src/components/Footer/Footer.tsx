@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const Footer = () => {
+export const Footer = () => {
   return (
     <footer className="bg-stone-900 text-stone-300">
       <div className="container-custom py-16">
@@ -85,6 +85,4 @@ const Footer = () => {
     </footer>
   )
 }
-
-export default Footer
 

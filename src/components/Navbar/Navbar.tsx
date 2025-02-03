@@ -1,9 +1,9 @@
-import { useState } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 
 // Navbar Component
-const Navbar = () => {
-    const [isOpen, setIsOpen] = useState(false);
+export const Navbar = () => {
+    const [isOpen, setIsOpen] = React.useState(false);
   
     return (
       <nav className="bg-black text-white border-b border-neutral-800 sticky top-0 z-50">
@@ -89,7 +89,5 @@ const Navbar = () => {
       </nav>
     );
   };
-
-export default Navbar
 
 

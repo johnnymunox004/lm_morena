@@ -1,5 +1,6 @@
 import { useState, useRef } from 'react'
 import viniloCentro from '../../assets/foto1.png' // Asegúrate de tener esta imagen
+import { useAudio } from '../../context/AudioContext'
 
 interface Song {
   id: number
@@ -15,49 +16,44 @@ interface DiscoProps {
 }
 
 export const Disco = ({ songs }: DiscoProps) => {
-  const [currentSong, setCurrentSong] = useState<Song>(songs[0])
-  const [isPlaying, setIsPlaying] = useState(false)
-  const [progress, setProgress] = useState(0)
-  const [volume, setVolume] = useState(1)
+  const {
+    currentSong,
+    isPlaying,
+    progress,
+    volume,
+    handlePlayPause,
+    handleVolumeChange,
+    handleProgressChange,
+    handleNext,
+    handlePrevious,
+    setCurrentSong
+  } = useAudio()
+
   const audioRef = useRef<HTMLAudioElement>(null)
-
-  const handlePlayPause = () => {
-    if (audioRef.current) {
-      if (isPlaying) {
-        audioRef.current.pause()
-      } else {
-        audioRef.current.play()
-      }
-      setIsPlaying(!isPlaying)
-    }
-  }
-
-  const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newVolume = parseFloat(e.target.value)
-    setVolume(newVolume)
-    if (audioRef.current) {
-      audioRef.current.volume = newVolume
-    }
-  }
-
-  const handleProgressChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (audioRef.current) {
-      const time = (parseInt(e.target.value) * audioRef.current.duration) / 100
-      audioRef.current.currentTime = time
-      setProgress(parseInt(e.target.value))
-    }
-  }
 
   const handleTimeUpdate = () => {
     if (audioRef.current) {
       const progress = (audioRef.current.currentTime / audioRef.current.duration) * 100
-      setProgress(progress)
+      handleProgressChange(progress)
     }
   }
 
-  // Manejador para el cambio de canción
-  const handleSongChange = (song: typeof currentSong) => {
-    setCurrentSong(song)
+  // Función para manejar el cambio de canción
+  const handleSongChange = (direction: 'next' | 'prev') => {
+    const currentIndex = songs.findIndex(song => song.id === currentSong.id)
+    let newIndex
+
+    if (direction === 'next') {
+      newIndex = (currentIndex + 1) % songs.length
+    } else {
+      newIndex = (currentIndex - 1 + songs.length) % songs.length
+    }
+
+    setCurrentSong(songs[newIndex])
+    if (isPlaying) {
+      handlePlayPause() // Pausar la canción actual
+      setTimeout(() => handlePlayPause(), 100) // Reproducir la nueva canción después de un breve delay
+    }
   }
 
   return (
@@ -126,20 +122,26 @@ export const Disco = ({ songs }: DiscoProps) => {
 
         {/* Barra de progreso */}
         <div className="mb-4">
-          <input 
-            type="range"
-            min="0"
-            max="100"
-            value={progress}
-            onChange={handleProgressChange}
-            className="w-full h-1 bg-gray-700 rounded-lg appearance-none cursor-pointer accent-orange-500"
-          />
+          <div className="relative w-full h-1 bg-neutral-800 rounded-full">
+            <div
+              className="absolute h-full bg-gradient-to-r from-orange-500 to-red-600 rounded-full"
+              style={{ width: `${progress}%` }}
+            />
+            <input
+              type="range"
+              min="0"
+              max="100"
+              value={progress}
+              onChange={(e) => handleProgressChange(Number(e.target.value))}
+              className="absolute w-full h-full opacity-0 cursor-pointer"
+            />
+          </div>
         </div>
 
         {/* Controles principales */}
         <div className="flex justify-center items-center gap-8">
           <button 
-            onClick={() => handleSongChange(songs[songs.indexOf(currentSong) - 1] || songs[songs.length - 1])}
+            onClick={() => handleSongChange('prev')}
             className="text-orange-500 hover:text-orange-400 transition-colors"
           >
             <i className="fas fa-backward text-2xl"></i>
@@ -153,7 +155,7 @@ export const Disco = ({ songs }: DiscoProps) => {
           </button>
 
           <button 
-            onClick={() => handleSongChange(songs[songs.indexOf(currentSong) + 1] || songs[0])}
+            onClick={() => handleSongChange('next')}
             className="text-orange-500 hover:text-orange-400 transition-colors"
           >
             <i className="fas fa-forward text-2xl"></i>
@@ -175,7 +177,7 @@ export const Disco = ({ songs }: DiscoProps) => {
             max="1"
             step="0.01"
             value={volume}
-            onChange={handleVolumeChange}
+            onChange={(e) => handleVolumeChange(Number(e.target.value))}
             className="w-32 h-1 accent-orange-500 bg-gray-700/50 rounded-full
                      hover:accent-orange-400 transition-colors cursor-pointer"
           />
@@ -186,7 +188,7 @@ export const Disco = ({ songs }: DiscoProps) => {
           {songs.map((song) => (
             <button
               key={song.id}
-              onClick={() => handleSongChange(song)}
+              onClick={() => setCurrentSong(song)}
               className={`w-full p-3 flex items-center justify-between rounded-lg transition-all
                 ${currentSong.id === song.id 
                   ? 'bg-gradient-to-r from-orange-500/20 to-red-600/20 border-orange-500/40' 
@@ -214,7 +216,7 @@ export const Disco = ({ songs }: DiscoProps) => {
         ref={audioRef}
         src={currentSong.audioUrl}
         onTimeUpdate={handleTimeUpdate}
-        onEnded={() => setIsPlaying(false)}
+        onEnded={() => handlePlayPause()}
       />
     </div>
   )
