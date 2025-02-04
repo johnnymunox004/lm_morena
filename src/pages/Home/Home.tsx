@@ -8,6 +8,10 @@ import pista1 from "../../assets/pista_1.mp3";
 import pista2 from "../../assets/pista2.mp3";
 import pista3 from "../../assets/pista_3.mp3";
 
+import entrada1 from "../../assets/foto5.jpg"
+import entrada2 from "../../assets/foto6.jpg"
+import entrada3 from "../../assets/foto7.jpg"
+
 import foto9 from "../../assets/foto9.jpg";
 import foto10 from "../../assets/foto10.jpg";
 
@@ -339,19 +343,19 @@ const events = [
     title: "Noche de Country Latino",
     date: "15 de Mayo, 2024",
     location: "Teatro Real, Madrid",
-    image: logo
+    image: entrada1
   },
   {
     title: "Festival Raíces",
     date: "22 de Mayo, 2024",
     location: "Plaza Mayor, Barcelona",
-    image: logo2
+    image: entrada2
   },
   {
     title: "Concierto Bajo las Estrellas",
     date: "30 de Mayo, 2024",
     location: "Jardines del Retiro, Madrid",
-    image: logo3
+    image: entrada3
   }
 ]
 

@@ -18,15 +18,15 @@ const SocialWidget = () => {
       label: "WhatsApp"
     },
     {
-      icon: "fab fa-facebook-messenger",
+      icon: "fab fa-facebook",
       color: "bg-[#0084FF] hover:bg-[#0078E9]",
-      url: "https://m.me/almamorena",
+      url: "https://www.facebook.com/Almamorenaoficial/?ref=embed_page",
       label: "Messenger"
     },
     {
       icon: "fab fa-youtube",
       color: "bg-[#FF0000] hover:bg-[#E60000]",
-      url: "https://youtube.com/@almamorena",
+      url: "https://www.youtube.com/channel/UC5NxqHGdEJrRNkCGvZmccrA",
       label: "YouTube"
     },
     {
