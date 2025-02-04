@@ -9,7 +9,7 @@ const Layout = () => {
     <div className="min-h-screen flex flex-col">
       <EventTicker />
       <Navbar />
-      <main className="flex-grow mt-10">
+      <main className="flex-grow">
         <Outlet />
       </main>
       <Footer />

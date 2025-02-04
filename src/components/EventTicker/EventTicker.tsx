@@ -8,53 +8,52 @@ interface Event {
 
 const events: Event[] = [
   {
-    date: "15 Mayo 2024",
+    date: "15 Mayo",
     title: "Noche de Country Latino",
-    location: "Teatro Real, Madrid"
+    location: "Madrid"
   },
   {
-    date: "22 Mayo 2024",
+    date: "22 Mayo",
     title: "Festival Raíces",
-    location: "Plaza Mayor, Barcelona"
+    location: "Barcelona"
   },
   {
-    date: "30 Mayo 2024",
+    date: "30 Mayo",
     title: "Concierto Bajo las Estrellas",
-    location: "Jardines del Retiro, Madrid"
+    location: "Madrid"
   },
   {
-    date: "5 Junio 2024",
+    date: "5 Junio",
     title: "Alma Morena en Vivo",
-    location: "Palacio de la Música, Valencia"
+    location: "Valencia"
   }
 ]
 
 const EventTicker = () => {
-  const [position, setPosition] = useState(0)
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setPosition((prev) => (prev + 1) % events.length)
-    }, 5000) // Cambia cada 5 segundos
-
-    return () => clearInterval(interval)
-  }, [])
-
   return (
-    <div className="fixed top-0 left-0 right-0 bg-gradient-to-r from-orange-500 to-red-600 text-white py-2 z-50">
+    <div className="bg-gradient-to-r from-orange-500 to-red-600 text-white py-1 text-sm">
       <div className="relative overflow-hidden">
         <div className="flex whitespace-nowrap animate-ticker">
-          {events.concat(events).map((event, index) => (
+          {[...events, ...events].map((event, index) => (
             <div
               key={index}
-              className="inline-flex items-center gap-2 px-4 min-w-max"
+              className="inline-flex items-center gap-1 px-3 min-w-max"
             >
-              <span className="font-bold">{event.date}</span>
-              <span className="mx-2">|</span>
-              <span>{event.title}</span>
-              <span className="mx-2">•</span>
-              <span className="text-white/80">{event.location}</span>
-              <span className="mx-8">★</span>
+              <div className="md:hidden">
+                <span className="font-semibold">{event.date}</span>
+                <span className="mx-1">•</span>
+                <span>{event.title}</span>
+              </div>
+
+              <div className="hidden md:flex md:items-center md:gap-2">
+                <span className="font-semibold">{event.date}</span>
+                <span className="mx-1">|</span>
+                <span>{event.title}</span>
+                <span className="mx-1">•</span>
+                <span className="text-white/80">{event.location}</span>
+              </div>
+
+              <span className="mx-6 text-orange-200">★</span>
             </div>
           ))}
         </div>
@@ -63,4 +62,4 @@ const EventTicker = () => {
   )
 }
 
-export default EventTicker 
+export default EventTicker
