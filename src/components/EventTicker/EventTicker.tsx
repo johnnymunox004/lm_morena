@@ -6,7 +6,7 @@ interface Event {
   location: string
 }
 
-const events = [
+const events: Event[] = [
   {
     date: "15 Mayo",
     title: "Noche de Country Latino",
