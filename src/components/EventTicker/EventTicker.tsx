@@ -10,29 +10,29 @@ const events: Event[] = [
   {
     date: "15 Mayo",
     title: "Noche de Country Latino",
-    location: "Madrid"
+    location: "Teatro Real, Madrid"
   },
   {
     date: "22 Mayo",
     title: "Festival Raíces",
-    location: "Barcelona"
+    location: "Plaza Mayor, Barcelona"
   },
   {
     date: "30 Mayo",
     title: "Concierto Bajo las Estrellas",
-    location: "Madrid"
+    location: "Jardines del Retiro, Madrid"
   },
   {
     date: "5 Junio",
     title: "Alma Morena en Vivo",
-    location: "Valencia"
+    location: "Palacio de la Música, Valencia"
   }
 ]
 
 const EventTicker = () => {
   return (
     <div className="bg-gradient-to-r from-orange-500 to-red-600 text-white py-1 text-sm">
-      <div className="relative overflow-hidden">
+      <div className="container mx-auto relative overflow-hidden">
         <div className="flex whitespace-nowrap animate-ticker">
           {[...events, ...events].map((event, index) => (
             <div
@@ -42,7 +42,7 @@ const EventTicker = () => {
               <div className="md:hidden">
                 <span className="font-semibold">{event.date}</span>
                 <span className="mx-1">•</span>
-                <span>{event.title}</span>
+                <span className="truncate max-w-[150px]">{event.title}</span>
               </div>
 
               <div className="hidden md:flex md:items-center md:gap-2">
@@ -53,7 +53,7 @@ const EventTicker = () => {
                 <span className="text-white/80">{event.location}</span>
               </div>
 
-              <span className="mx-6 text-orange-200">★</span>
+              <span className="mx-4 text-orange-200">★</span>
             </div>
           ))}
         </div>
