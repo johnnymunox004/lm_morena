@@ -6,7 +6,7 @@ interface Event {
   location: string
 }
 
-const events: Event[] = [
+const events = [
   {
     date: "15 Mayo",
     title: "Noche de Country Latino",
@@ -32,7 +32,7 @@ const events: Event[] = [
 const EventTicker = () => {
   return (
     <div className="bg-gradient-to-r from-orange-500 to-red-600 text-white py-1 text-sm">
-      <div className="container mx-auto relative overflow-hidden">
+      <div className="relative overflow-hidden">
         <div className="flex whitespace-nowrap animate-ticker">
           {[...events, ...events].map((event, index) => (
             <div
