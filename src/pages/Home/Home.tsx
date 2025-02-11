@@ -143,7 +143,6 @@ const Home = () => {
 
                 <div className="text-center lg:text-left mt-4 lg:mt-6 w-full max-w-[90%] lg:max-w-none">
                   <p className="text-lg md:text-xl text-gray-300 mb-4 font-playfair italic">
-                    Donde el country se encuentra con el alma latina
                   </p>
                   <div className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
                     <button
@@ -340,7 +339,6 @@ const Home = () => {
 // Sample data
 const events = [
   {
-    title: "Noche de Country Latino",
     date: "15 de Mayo, 2024",
     location: "Teatro Real, Madrid",
     image: entrada1

@@ -12,7 +12,6 @@ const Footer = () => {
               Alma Morena
             </h3>
             <p className="text-stone-400 mb-6">
-              Fusionando la esencia del country con ritmos latinos, 
               creando una experiencia musical única.
             </p>
             <div className="flex space-x-4">
@@ -64,15 +63,12 @@ const Footer = () => {
             <ul className="space-y-2 text-stone-400">
               <li>
                 <i className="far fa-envelope mr-2"></i>
-                info@almamorena.com
               </li>
               <li>
                 <i className="fas fa-phone mr-2"></i>
-                +34 123 456 789
               </li>
               <li>
                 <i className="fas fa-map-marker-alt mr-2"></i>
-                Madrid, España
               </li>
             </ul>
           </div>
