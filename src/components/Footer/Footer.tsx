@@ -12,6 +12,7 @@ const Footer = () => {
               Alma Morena
             </h3>
             <p className="text-stone-400 mb-6">
+              Fusionando la esencia del pop con ritmos latinos, 
               creando una experiencia musical única.
             </p>
             <div className="flex space-x-4">
@@ -63,12 +64,15 @@ const Footer = () => {
             <ul className="space-y-2 text-stone-400">
               <li>
                 <i className="far fa-envelope mr-2"></i>
+                josedherrera@msn.com
               </li>
               <li>
                 <i className="fas fa-phone mr-2"></i>
+                +52 4776739436
               </li>
               <li>
                 <i className="fas fa-map-marker-alt mr-2"></i>
+                owatonna, MN
               </li>
             </ul>
           </div>

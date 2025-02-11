@@ -10,6 +10,7 @@ const events: Event[] = [
   
   {
     date: "15 Mayo",
+    title: "Noche de pop Latino",
     location: "Teatro Real, Madrid"
   },
   {
