@@ -14,8 +14,8 @@ const SocialWidget = () => {
     {
       icon: "fab fa-whatsapp",
       color: "bg-[#25D366] hover:bg-[#20BD5C]",
-      url: "https://wa.me/+524776739436
-",
+      url: "https://wa.me/+524776739436",
+
       label: "WhatsApp"
     },
     {

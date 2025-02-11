@@ -37,7 +37,7 @@ const Contact = () => {
       name: 'Spotify',
       icon: 'fab <i class="fa-brands fa-spotify',
       color: 'bg-[#25D366] hover:bg-[#20BD5C]',
-      url: 'https://x.com/almamorena',
+      url: 'https://open.spotify.com/intl-es/artist/70SkefDSlgqcKLfrzrVAJt',
       description: 'Síguenos en X'
     }
   ]
