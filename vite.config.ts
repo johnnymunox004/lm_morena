@@ -6,7 +6,9 @@ export default defineConfig({
   plugins: [react()],
   build: {
     outDir: 'dist',
-    sourcemap: false,
+    // Ensure esbuild is properly configured
+    target: 'esnext',
+    sourcemap: true,
     rollupOptions: {
       output: {
         manualChunks: undefined,
