@@ -32,6 +32,7 @@ const SocialWidget = () => {
     {
       icon: "fas fa-phone",
       color: "bg-[#00B300] hover:bg-[#009900]",
+      url: "tel:+524776739436",
       label: "Llamar"
     }
   ]

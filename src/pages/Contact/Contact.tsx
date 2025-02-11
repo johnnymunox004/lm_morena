@@ -9,27 +9,34 @@ const Contact = () => {
       name: 'WhatsApp',
       icon: 'fab fa-whatsapp',
       color: 'bg-[#25D366] hover:bg-[#20BD5C]',
+      url: 'https://wa.me/+524776739436',
       description: 'Contáctanos directamente por WhatsApp'
     },
     {
       name: 'Facebook',
       icon: 'fab fa-facebook',
       color: 'bg-[#1877F2] hover:bg-[#0D65D9]',
+      url: "https://www.facebook.com/Almamorenaoficial/?ref=embed_page",
       description: 'Síguenos en Facebook para más contenido'
     },
     {
       name: 'YouTube',
       icon: 'fab fa-youtube',
       color: 'bg-[#FF0000] hover:bg-[#CC0000]',
+      url: "https://www.youtube.com/channel/UC5NxqHGdEJrRNkCGvZmccrA",
       description: 'Mira nuestros videos en YouTube'
     },
     {
       name: 'Instagram',
       icon: 'fab fa-instagram',
       color: 'bg-gradient-to-br from-[#833AB4] via-[#FD1D1D] to-[#F77737] hover:from-[#7232A8] hover:via-[#E31111] hover:to-[#E56B2B]',
+      url: 'https://www.instagram.com/almamorenamusic/',
       description: 'Síguenos en Instagram'
     },
     {
+      name: 'Spotify',
+      icon: 'fab <i class="fa-brands fa-spotify',
+      color: 'bg-[#25D366] hover:bg-[#20BD5C]',
       url: 'https://x.com/almamorena',
       description: 'Síguenos en X'
     }
@@ -103,10 +110,12 @@ const Contact = () => {
               <a href="mailto:info@almamorena.com" 
                  className="flex items-center gap-2 text-orange-500 hover:text-orange-400 transition-colors">
                 <i className="fas fa-envelope"></i>
+                josedherrera@msn.com
               </a>
               <a href="tel:+34123456789" 
                  className="flex items-center gap-2 text-orange-500 hover:text-orange-400 transition-colors">
                 <i className="fas fa-phone"></i>
+                +52 4776739436
               </a>
             </div>
           </div>
