@@ -8,9 +8,9 @@ import pista1 from "../../assets/pista_1.mp3";
 import pista2 from "../../assets/pista2.mp3";
 import pista3 from "../../assets/pista_3.mp3";
 
-import entrada1 from "../../assets/foto5.jpg"
-import entrada2 from "../../assets/foto6.jpg"
-import entrada3 from "../../assets/foto7.jpg"
+import entrada1 from "../../assets/foto5.jpg";
+import entrada2 from "../../assets/foto6.jpg";
+import entrada3 from "../../assets/foto7.jpg";
 
 import foto9 from "../../assets/foto9.jpg";
 import foto10 from "../../assets/foto10.jpg";
@@ -22,15 +22,13 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "@fontsource/playfair-display"; // Instalar con: npm install @fontsource/playfair-display
-import { songs } from '../../data/songs'  // Importar songs desde el archivo correcto
-import { useRef } from 'react'
-import { useAudio } from '../../context/AudioContext'
-import { FaPlay, FaPause, FaForward, FaBackward } from 'react-icons/fa' // Instala react-icons si no lo tienes
-
+import { songs } from "../../data/songs"; // Importar songs desde el archivo correcto
+import { useRef } from "react";
+import { useAudio } from "../../context/AudioContext";
+import { FaPlay, FaPause, FaForward, FaBackward } from "react-icons/fa"; // Instala react-icons si no lo tienes
 
 // Datos de ejemplo para el componente Disco
 const songsData = [
-
   {
     id: 1,
     title: "sera prudente ",
@@ -62,31 +60,30 @@ const songsData = [
     duration: "3:45",
     cover: logo,
     audioUrl: pista1,
-  }
-
+  },
 ];
 
 const Home = () => {
-  const { handlePlayPause, isPlaying, setCurrentSong } = useAudio()
-  const reproductorRef = useRef<HTMLDivElement>(null)
+  const { handlePlayPause, isPlaying, setCurrentSong } = useAudio();
+  const reproductorRef = useRef<HTMLDivElement>(null);
 
   const handleEscucharClick = () => {
     // Seleccionar la primera canción
-    setCurrentSong(songs[0])
-    
+    setCurrentSong(songs[0]);
+
     // Pequeño delay para asegurar que la canción esté cargada
     setTimeout(() => {
       if (!isPlaying) {
-        handlePlayPause()
+        handlePlayPause();
       }
-    }, 100)
-    
+    }, 100);
+
     // Scroll suave hasta el reproductor
-    reproductorRef.current?.scrollIntoView({ 
-      behavior: 'smooth',
-      block: 'center'
-    })
-  }
+    reproductorRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "center",
+    });
+  };
 
   const sliderSettings = {
     dots: false,
@@ -102,14 +99,13 @@ const Home = () => {
     pauseOnHover: false,
   };
 
-  const images = [logo, logo2, foto10 ];
+  const images = [logo, logo2, foto10];
 
   return (
     <div className="flex flex-col bg-black text-white font-playfair">
       {/* Hero Section */}
       <section className="min-h-screen relative lg:h-screen lg:overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black"></div>
-  
 
         <div className="relative z-20 container mx-auto px-4 py-12 lg:h-full">
           <div className="h-full flex items-center">
@@ -170,7 +166,10 @@ const Home = () => {
               {/* Columna Derecha: Reproductor y App */}
               <div className="flex flex-col lg:flex-row items-center justify-center lg:justify-between w-full gap-8">
                 {/* Lado izquierdo: Reproductor */}
-                <div ref={reproductorRef} className="w-full max-w-[250px] lg:max-w-[320px] flex justify-center lg:ml-8 lg:flex-1">
+                <div
+                  ref={reproductorRef}
+                  className="w-full max-w-[250px] lg:max-w-[320px] flex justify-center lg:ml-8 lg:flex-1"
+                >
                   <div className="transform scale-[0.85] hover:scale-[0.87] transition-transform duration-300 flex justify-center">
                     <DeviceFrameset device="iPhone X" color="gold">
                       <div className="w-full h-full bg-black">
@@ -185,11 +184,15 @@ const Home = () => {
                   {/* Cards en row */}
                   <div className="flex gap-4 justify-center lg:justify-start">
                     {/* Card 1: Música Offline */}
-                    <div className="flex items-center gap-2 p-3 bg-black/30 rounded-xl backdrop-blur-sm
+                    <div
+                      className="flex items-center gap-2 p-3 bg-black/30 rounded-xl backdrop-blur-sm
                                    border border-orange-500/20 hover:border-orange-500/40 
-                                   transition-all duration-300 flex-1">
-                      <div className="w-8 h-8 rounded-full bg-orange-500/10 flex items-center justify-center 
-                                     text-orange-500">
+                                   transition-all duration-300 flex-1"
+                    >
+                      <div
+                        className="w-8 h-8 rounded-full bg-orange-500/10 flex items-center justify-center 
+                                     text-orange-500"
+                      >
                         <i className="fas fa-music text-sm"></i>
                       </div>
                       <div>
@@ -199,39 +202,62 @@ const Home = () => {
                     </div>
 
                     {/* Card 2: Notificaciones */}
-                    <div className="flex items-center gap-2 p-3 bg-black/30 rounded-xl backdrop-blur-sm
+                    <div
+                      className="flex items-center gap-2 p-3 bg-black/30 rounded-xl backdrop-blur-sm
                                    border border-orange-500/20 hover:border-orange-500/40 
-                                   transition-all duration-300 flex-1">
-                      <div className="w-8 h-8 rounded-full bg-orange-500/10 flex items-center justify-center 
-                                     text-orange-500">
+                                   transition-all duration-300 flex-1"
+                    >
+                      <div
+                        className="w-8 h-8 rounded-full bg-orange-500/10 flex items-center justify-center 
+                                     text-orange-500"
+                      >
                         <i className="fas fa-bell text-sm"></i>
                       </div>
                       <div>
                         <h3 className="text-sm font-semibold">Alertas</h3>
-                        <p className="text-xs text-gray-400">No te pierdas nada</p>
+                        <p className="text-xs text-gray-400">
+                          No te pierdas nada
+                        </p>
                       </div>
                     </div>
                   </div>
 
                   {/* Botones de store en row */}
                   <div className="flex gap-4 justify-center lg:justify-start">
-                    <a href="#" className="flex items-center gap-2 p-3 
+                    <a
+                      href="#"
+                      className="flex items-center gap-2 p-3 
                                         bg-gradient-to-br from-neutral-900 to-black
                                         border border-orange-500/20 rounded-xl hover:border-orange-500/40 
-                                        transition-all duration-300 flex-1">
+                                        transition-all duration-300 flex-1"
+                    >
                       <i className="fab fa-apple text-xl"></i>
                       <div className="text-left">
                         <div className="text-xs text-gray-400">Descarga en</div>
                         <div className="text-sm font-semibold">App Store</div>
                       </div>
                     </a>
-                    <a href="#" className="flex items-center gap-2 p-3 
+                    <a
+                      href="https://expo.dev/artifacts/eas/muPFAKvNtYSkqWdHJKzZ4i.apk"
+                      className="flex items-center gap-2 p-3 
                                         bg-gradient-to-br from-neutral-900 to-black
                                         border border-orange-500/20 rounded-xl hover:border-orange-500/40 
-                                        transition-all duration-300 flex-1">
+                                        transition-all duration-300 flex-1"
+                      download // Indica que es un archivo descargable
+                      rel="noopener noreferrer" // Mejora la seguridad
+                      target="_blank" // Abre en nueva pestaña
+                      onClick={(e) => {
+                        // Opcional: Confirmar descarga
+                        if (!window.confirm('¿Deseas descargar la aplicación?')) {
+                          e.preventDefault();
+                        }
+                      }}
+                    >
                       <i className="fab fa-google-play text-xl"></i>
                       <div className="text-left">
-                        <div className="text-xs text-gray-400">Disponible en</div>
+                        <div className="text-xs text-gray-400">
+                          Disponible en
+                        </div>
                         <div className="text-sm font-semibold">Play Store</div>
                       </div>
                     </a>
@@ -343,43 +369,43 @@ const events = [
     title: "Noche de pop Latino",
     date: "15 de Mayo, 2024",
     location: "Teatro Real, Madrid",
-    image: entrada1
+    image: entrada1,
   },
   {
     title: "Festival Raíces",
     date: "22 de Mayo, 2024",
     location: "Plaza Mayor, Barcelona",
-    image: entrada2
+    image: entrada2,
   },
   {
     title: "Concierto Bajo las Estrellas",
     date: "30 de Mayo, 2024",
     location: "Jardines del Retiro, Madrid",
-    image: entrada3
-  }
-]
+    image: entrada3,
+  },
+];
 
 const releases = [
   {
     title: "valio la pena",
     year: "2024",
-    cover: foto9
+    cover: foto9,
   },
   {
     title: "no quiero hacerte daño",
     year: "2023",
-    cover: foto10
+    cover: foto10,
   },
   {
     title: "Alma Latina",
     year: "2023",
-    cover: logo2
+    cover: logo2,
   },
   {
     title: "Entre Dos Mundos",
     year: "2022",
-    cover: logo3
-  }
-]
+    cover: logo3,
+  },
+];
 
 export default Home;
